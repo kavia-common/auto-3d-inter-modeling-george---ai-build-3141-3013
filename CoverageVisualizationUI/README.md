@@ -1,82 +1,34 @@
-# Lightweight React Template for KAVIA
+# CoverageVisualizationUI
 
-This project provides a minimal React template with a clean, modern UI and minimal dependencies.
+React app for rendering 2D heatmap and 3D volume coverage views with export to PNG/HTML.
 
 ## Features
 
-- **Lightweight**: No heavy UI frameworks - uses only vanilla CSS and React
-- **Modern UI**: Clean, responsive design with KAVIA brand styling
-- **Fast**: Minimal dependencies for quick loading times
-- **Simple**: Easy to understand and modify
+- 2D/3D mode switch with z_slice/z_height logic and validation
+- Color map, color range, thresholds, AP selection (single/multi with multi_ap_mode)
+- Overlays (kriging variance toggle), downsampling factor
+- Deterministic seed handling and config hash
+- Health status via /api/v1/healthz
+- Export panel calling /api/v1/export/png and /api/v1/export/html with responses displayed and metrics
 
-## Getting Started
+## Environment
 
-In the project directory, you can run:
+Set one of:
+- REACT_APP_API_BASE, or
+- REACT_APP_BACKEND_URL
 
-### `npm start`
+Optional:
+- REACT_APP_API_KEY to send X-API-Key header
 
-Runs the app in development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+See .env.example for other available variables.
 
-### `npm test`
+## Scripts
 
-Launches the test runner in interactive watch mode.
+- npm start
+- npm test
+- npm run build
 
-### `npm run build`
+## Notes
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-## Customization
-
-### Colors
-
-The main brand colors are defined as CSS variables in `src/App.css`:
-
-```css
-:root {
-  --kavia-orange: #E87A41;
-  --kavia-dark: #1A1A1A;
-  --text-color: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.7);
-  --border-color: rgba(255, 255, 255, 0.1);
-}
-```
-
-### Components
-
-This template uses pure HTML/CSS components instead of a UI framework. You can find component styles in `src/App.css`. 
-
-Common components include:
-- Buttons (`.btn`, `.btn-large`)
-- Container (`.container`)
-- Navigation (`.navbar`)
-- Typography (`.title`, `.subtitle`, `.description`)
-
-## Learn More
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Visualization uses Plotly if available on window.Plotly. If not present, a placeholder is shown. You can include Plotly via a script tag in index.html or add the 'plotly.js' dependency.
+- No ports are hard-coded; base URLs are taken from env.
